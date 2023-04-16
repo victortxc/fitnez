@@ -13,8 +13,6 @@ export const ContainerLogin = styled.div`
     width: 100%;
     max-width: 400px;
     background-color: ${Colors.WHITE};
-    display: flex;
-    flex-direction: column;
     padding: ${Spaces.FIVE} ${Spaces.THREE};
 `;
 
@@ -26,4 +24,9 @@ export const Title = styled.h2`
 export const ForgotPassword = styled.a`
     font-size: ${FontSizes.TWO};
     color: ${Colors.BLACK}
+`;
+
+export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
 `;

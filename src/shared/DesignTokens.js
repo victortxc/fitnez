@@ -3,7 +3,8 @@ export const Colors = {
     BLACK: '#000000',
     BACKGROUND: '#F8F9F5',
     BLUE: '#466795',
-    GREY: '#D9DBD0'
+    GREY: '#D9DBD0',
+    RED: '#dc3545'
 };
 
 export const FontSizes = {
