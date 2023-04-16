@@ -12,6 +12,7 @@ import {
 } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
+import * as Yup from 'yup';
 
 export function Login() {
   const navigate = useNavigate();
@@ -20,20 +21,14 @@ export function Login() {
     navigate("/home");
   }
 
-  function validate(values) {
-    console.log(values);
-    const errors = {};
-    if (!values.email) {
-      errors.email = "Este campo é obrigatório";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = "O e-mail informado é inválido";
-    }
-    if (!values.email) {
-      errors.password = "Este campo é obrigatório";
-    }
-    return errors;
-  }
+  const SignupSchema = Yup.object().shape({
+    password: Yup.string()
+      .min(10, 'A senha informada é muito curta')
+      .required('Este campo é obrigatório'),
+    email: Yup.string().email('O e-mail informado é inválido').required('Este campo é obrigatório'),
+  });
 
+  
   return (
     <>
       <Header />
@@ -42,7 +37,7 @@ export function Login() {
           <Title>Acesse sua conta FIT.NEZ</Title>
           <Formik
             initialValues={{ email: "", password: "" }}
-            validate={validate}
+            validationSchema={SignupSchema}
             onSubmit={() => {
               handleLogin();
             }}
@@ -50,6 +45,7 @@ export function Login() {
             {({
               values,
               errors,
+              touched,
               handleChange,
               handleBlur,
               handleSubmit,
@@ -64,7 +60,7 @@ export function Login() {
                   onBlur={handleBlur}
                   value={values.email}
                 />
-                {errors.email && (<ErrorSpan>{errors.email}</ErrorSpan>)}
+                {errors.email && touched.email && (<ErrorSpan>{errors.email}</ErrorSpan>)}
                 <Input
                   label="Senha"
                   placeholder="Preencha a senha cadastrada"
@@ -74,7 +70,7 @@ export function Login() {
                   onBlur={handleBlur}
                   value={values.password}
                 />
-                {errors.password && (<ErrorSpan>{errors.password}</ErrorSpan>)}
+                {errors.password && touched.password && (<ErrorSpan>{errors.password}</ErrorSpan>)}
                 <ForgotPassword href="/">Esqueci minha senha</ForgotPassword>
                 <Button type="submit">Submit</Button>
               </Form>
