@@ -1,10 +1,12 @@
 import React from "react";
 import {Container, Select} from "./styles";
+import logo from '../../assets/logo.png';
+
 
 export function Header() {
     return(
         <Container>
-            <h1>Logo</h1>
+            <img src={logo} alt="logo" />
             <Select>
                 <option>PT-BR</option>
                 <option>EN</option>
