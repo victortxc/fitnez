@@ -4,7 +4,7 @@ import { Input } from "../../components/Input";
 import { Header } from "../../components/Header";
 import {
   Container
-} from "./styles";
+} from "../../assets/styles.js";
 
 export function AdicionarUsuario() {
   const formik = useFormik({

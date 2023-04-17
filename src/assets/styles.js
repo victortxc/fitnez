@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Colors, FontSizes, Spaces } from "../../shared/DesignTokens";
+import { Colors, FontSizes, Spaces } from "../shared/DesignTokens";
 
 export const Container = styled.div`
   display: flex;
