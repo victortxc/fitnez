@@ -1,16 +1,13 @@
 import React from "react";
-import {Container, Select} from "./styles";
-import logo from '../../assets/logo.png';
+import {Container} from "./styles";
+import groups from '../../assets/groups.png';
 
 
 export function Header() {
     return(
         <Container>
-            <img src={logo} alt="logo" />
-            <Select>
-                <option>PT-BR</option>
-                <option>EN</option>
-            </Select>
+            <h1>Time FIAP</h1>
+            <img src={groups} alt="groups"/>
         </Container>
     );
 }
