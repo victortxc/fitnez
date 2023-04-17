@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "./styles";
+import { Container, Title } from "../../assets/styles.js";
 import groups from "../../assets/groups.png";
 
 export function Header() {

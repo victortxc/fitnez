@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { Input } from "../../components/Input";
 import { Header } from "../../components/Header";
-import { Container, ContainerLogin } from "../../assets/styles.js";
+import { Container, ContainerLogin, Label } from "../../assets/styles.js";
 
 export function AdicionarUsuario() {
   const formik = useFormik({
