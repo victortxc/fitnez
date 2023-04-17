@@ -3,11 +3,9 @@
 import React from "react";
 import { useFormik } from 'formik';
 
-
 export function AdicionarUsuario() {
 
-
-  const SignupForm = () => {
+    
     const formik = useFormik({
       initialValues: {
         nome: '',
@@ -109,4 +107,4 @@ export function AdicionarUsuario() {
         />
       </form>
     );
-  };  }
+  };  
