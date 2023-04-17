@@ -1,6 +1,10 @@
 import { useFormik } from "formik";
 import React from "react";
 import { Input } from "../../components/Input";
+import { Header } from "../../components/Header";
+import {
+  Container
+} from "./styles";
 
 export function AdicionarUsuario() {
   const formik = useFormik({
