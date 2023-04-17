@@ -1,73 +1,56 @@
+
 import React from "react";
 import { Header } from "../../components/Header";
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
-import {
-  Container,
-  Title,
-  Form,
-} from "./styles";
-import { useNavigate } from "react-router-dom";
-import { Formik } from "formik";
-import { useForm } from 'react-hook-form';
+import { Formik, Field, Form } from 'formik';
+import './App.css';
 
-
-const {register, setValue, setFocus} = useForm();
-
-export function Login() {
-  const navigate = useNavigate();
-
-  function handleLogin() {
-    navigate("/home");
+function Adicionar() {
+  function onSubmit(values, actions) {
+    console.log('SUBMIT', values);
   }
 
+  function onBlurCep(ev, setFieldValue) {
+    const { value } = ev.target;
 
+    const cep = value?.replace(/[^0-9]/g, '');
 
-  const checkCEP = (e) => {
-    const cep = e.target.value.replace(/\D/g, '');
-    console.log(cep);
-    fetch(`https://viacep.com.br/ws/${cep}/json/`).then(res => res.json()).then(data => {
-      console.log(data);
-      // register({ name: 'address', value: data.logradouro });
-      setValue('address', data.logradouro);
-      setValue('neighborhood', data.bairro);
-      setValue('city', data.localidade);
-      setFocus('addressNumber');
-    });
+    if (cep?.length !== 8) {
+      return;
+    }
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        setFieldValue('logradouro', data.logradouro);
+        setFieldValue('bairro', data.bairro);
+        setFieldValue('cidade', data.localidade);
+        setFieldValue('uf', data.uf);
+      });
   }
-  
+
   return (
-    <>
+      <>
       <Header />
-      <Container>
-          <Title>Adicionar</Title>
-          <Formik
-            initialValues={{ 
-                nome: "",
-                idade: "", 
-                cep: "", 
-                bairro: "", 
-                logradouro: "", 
-                numero: "", 
-                cidade: "", 
-                formacao: "", 
-                experiencia: "", 
-                hobbies: "" 
-            }}
-            validationSchema={SignupSchema}
-            onSubmit={() => {
-              handleLogin();
-            }}
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-            }) => (
-              <Form onSubmit={handleSubmit}>
+      <Container> 
+      <Title>Adicionar</Title>
+      <Formik
+        onSubmit={onSubmit}
+        validateOnMount
+        initialValues={{
+          nome: '',
+          idade: '', 
+          cep: '',
+          logradouro: '',
+          numero: '',
+          complemento: '',
+          bairro: '',
+          cidade: '',
+          formacao: '', 
+          experiencia: '', 
+          hobbies: ''
+        }}
+        render={({ isValid, setFieldValue }) => (
+            <Form onSubmit={handleSubmit}>
                 <Input
                   label="Nome:"
                   type="text"
@@ -89,9 +72,8 @@ export function Login() {
                   type="text"
                   name="cep"
                   onChange={handleChange}
-                  onBlur={checkCEP}
                   value={values.cep}
-                  {...register("cep")}
+                  onBlur={(ev) => onBlurCep(ev, setFieldValue)}
                 />
                 <Input
                   label="Bairro:"
@@ -100,7 +82,6 @@ export function Login() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.bairro}
-                  {...register("neighborhood" )}
                 />
                 <Input
                   label="Logradouro: "
@@ -109,7 +90,6 @@ export function Login() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.logradouro}
-                  {...register("address" )}
                 />
                 <Input
                   label="Nº"
@@ -118,7 +98,6 @@ export function Login() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.numero}
-                  {...register("addressNumber" )}
                 />
                 <Input
                   label="Cidade:"
@@ -127,7 +106,6 @@ export function Login() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.cidade}
-                  {...register("city" )}
                 />
                 <Input
                   label="Formações:"
@@ -153,14 +131,9 @@ export function Login() {
                   onBlur={handleBlur}
                   value={values.hobbies}
                 />
-                
-                <Button type="reset">Limpar</Button>
-                <Button type="submit">Enviar</Button>
-
-              </Form>
-            )}
-          </Formik>
-      </Container>
-    </>
-  );
-}
+            <button type="submit" disabled={!isValid}>Enviar</button>
+          </Form>
+        )}
+      />
+      </Container> 
+    </>)}
