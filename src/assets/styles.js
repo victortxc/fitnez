@@ -19,6 +19,7 @@ export const ContainerLogin = styled.div`
 export const Title = styled.h2`
   font-size: ${FontSizes.THREE};
   margin-bottom: ${Spaces.FOUR};
+  color: ${Colors.WHITE};
 `;
 
 export const ForgotPassword = styled.a`
@@ -29,4 +30,8 @@ export const ForgotPassword = styled.a`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+`;
+
+export const Label = styled.p`
+  color: ${Colors.WHITE};
 `;

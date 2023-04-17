@@ -5,7 +5,7 @@ import groups from "../../assets/groups.png";
 export function Header() {
   return (
     <Container>
-      <h1>Time FIAP</h1>
+      <Title>Time FIAP</Title>
       <img src={groups} alt="groups" />
     </Container>
   );
