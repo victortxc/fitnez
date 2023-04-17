@@ -1,40 +1,35 @@
 
+
 import React from "react";
 import { Header } from "../../components/Header";
-import { Formik, Field, Form } from 'formik';
-import './App.css';
+import { Input } from "../../components/Input";
+import { Formik, Form } from 'formik';
+import { getCep } from "../../actions/cep.js"
 
-function Adicionar() {
+
+export function AdicionarUsuario() {
   function onSubmit(values, actions) {
     console.log('SUBMIT', values);
   }
 
-  function onBlurCep(ev, setFieldValue) {
-    const { value } = ev.target;
-
-    const cep = value?.replace(/[^0-9]/g, '');
-
-    if (cep?.length !== 8) {
-      return;
-    }
-
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        setFieldValue('logradouro', data.logradouro);
-        setFieldValue('bairro', data.bairro);
-        setFieldValue('cidade', data.localidade);
-        setFieldValue('uf', data.uf);
+  function preencherCep() {
+    const cep = this.cep.replace(/\D/g, "");
+    if (cep.length === 8) {
+      getCep(cep).then(response => {
+        this.rua = response.data.logradouro;
+        this.bairro = response.data.bairro;
+        this.estado = response.data.uf;
+        this.cidade = response.data.localidade;
       });
-  }
+    }
 
   return (
       <>
       <Header />
-      <Container> 
-      <Title>Adicionar</Title>
       <Formik
-        onSubmit={onSubmit}
+        onSubmit={() => {
+              preencherCep();
+            }}
         validateOnMount
         initialValues={{
           nome: '',
@@ -49,8 +44,14 @@ function Adicionar() {
           experiencia: '', 
           hobbies: ''
         }}
-        render={({ isValid, setFieldValue }) => (
-            <Form onSubmit={handleSubmit}>
+        >
+        {({
+              values,
+              handleChange,
+              handleBlur,
+              handleSubmit
+            }) => (
+            <Form onSubmit={{onSubmit}}>
                 <Input
                   label="Nome:"
                   type="text"
@@ -73,8 +74,9 @@ function Adicionar() {
                   name="cep"
                   onChange={handleChange}
                   value={values.cep}
-                  onBlur={(ev) => onBlurCep(ev, setFieldValue)}
+                  onBlur={handleBlur}
                 />
+                <button type="submit" onClick={preencherCep}>Buscar</button>
                 <Input
                   label="Bairro:"
                   type="text"
@@ -131,9 +133,8 @@ function Adicionar() {
                   onBlur={handleBlur}
                   value={values.hobbies}
                 />
-            <button type="submit" disabled={!isValid}>Enviar</button>
+            <button type="submit">Enviar</button>
           </Form>
-        )}
-      />
-      </Container> 
-    </>)}
+          )}
+          </Formik>
+    </>)}}
