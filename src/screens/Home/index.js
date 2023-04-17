@@ -1,12 +1,12 @@
 import React from "react";
-import {Header} from "../../components/Header";
+import { Header } from "../../components/Header";
 import { SiderBar } from "../../components/SideBar";
 
 export function Home() {
-    return(
-        <>
-        <Header />
-        <SiderBar active="home" />
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <SiderBar active="home" />
+    </>
+  );
 }

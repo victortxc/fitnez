@@ -1,5 +1,5 @@
-import {createGlobalStyle} from 'styled-components';
-import {Spaces, Colors} from './DesignTokens';
+import { createGlobalStyle } from "styled-components";
+import { Spaces, Colors } from "./DesignTokens";
 
 export const NormalizeStyles = createGlobalStyle`
    * {

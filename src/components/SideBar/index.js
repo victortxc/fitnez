@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "./styles";
 import { BsArrowUpRight, BsCalendarEvent } from "react-icons/bs";
-import {BiMenu} from "react-icons/bi";
+import { BiMenu } from "react-icons/bi";
 import { NavLink } from "../NavLink";
 import { Colors } from "../../shared/DesignTokens";
 

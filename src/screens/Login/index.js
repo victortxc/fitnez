@@ -12,7 +12,7 @@ import {
 } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 export function Login() {
   const navigate = useNavigate();
@@ -23,12 +23,13 @@ export function Login() {
 
   const SignupSchema = Yup.object().shape({
     password: Yup.string()
-      .min(10, 'A senha informada é muito curta')
-      .required('Este campo é obrigatório'),
-    email: Yup.string().email('O e-mail informado é inválido').required('Este campo é obrigatório'),
+      .min(10, "A senha informada é muito curta")
+      .required("Este campo é obrigatório"),
+    email: Yup.string()
+      .email("O e-mail informado é inválido")
+      .required("Este campo é obrigatório"),
   });
 
-  
   return (
     <>
       <Header />
@@ -60,7 +61,9 @@ export function Login() {
                   onBlur={handleBlur}
                   value={values.email}
                 />
-                {errors.email && touched.email && (<ErrorSpan>{errors.email}</ErrorSpan>)}
+                {errors.email && touched.email && (
+                  <ErrorSpan>{errors.email}</ErrorSpan>
+                )}
                 <Input
                   label="Senha"
                   placeholder="Preencha a senha cadastrada"
@@ -70,7 +73,9 @@ export function Login() {
                   onBlur={handleBlur}
                   value={values.password}
                 />
-                {errors.password && touched.password && (<ErrorSpan>{errors.password}</ErrorSpan>)}
+                {errors.password && touched.password && (
+                  <ErrorSpan>{errors.password}</ErrorSpan>
+                )}
                 <ForgotPassword href="/">Esqueci minha senha</ForgotPassword>
                 <Button type="submit">Submit</Button>
               </Form>
