@@ -1,10 +1,8 @@
-
-
-import React from "react";
 import { useFormik } from 'formik';
+import React from "react";
+import { Input } from "../../components/Input";
 
 export function AdicionarUsuario() {
-
     
     const formik = useFormik({
       initialValues: {
@@ -25,7 +23,7 @@ export function AdicionarUsuario() {
     return (
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="nome">Nome: </label>
-        <input
+        <Input
           id="nome"
           name="nome"
           type="text"
@@ -33,7 +31,7 @@ export function AdicionarUsuario() {
           value={formik.values.nome}
         />
         <label htmlFor="idade">Idade: </label>
-        <input
+        <Input
           id="idade"
           name="idade"
           type="text"
@@ -41,7 +39,7 @@ export function AdicionarUsuario() {
           value={formik.values.idade}
         />
         <label htmlFor="cep">CEP</label>
-        <input
+        <Input
           id="cep"
           name="cep"
           type="text"
@@ -50,7 +48,7 @@ export function AdicionarUsuario() {
         />
         <button type="submit">Buscar CEP</button>
         <label htmlFor="logradouro">Logradouro</label>
-        <input
+        <Input
           id="logradouro"
           name="logradouro"
           type="text"
@@ -58,7 +56,7 @@ export function AdicionarUsuario() {
           value={formik.values.logradouro}
         />
         <label htmlFor="bairro">Bairro</label>
-        <input
+        <Input
           id="bairro"
           name="bairro"
           type="text"
@@ -66,7 +64,7 @@ export function AdicionarUsuario() {
           value={formik.values.bairro}
         />
         <label htmlFor="numero">Numero</label>
-        <input
+        <Input
           id="numero"
           name="numero"
           type="text"
@@ -74,7 +72,7 @@ export function AdicionarUsuario() {
           value={formik.values.numero}
         />
         <label htmlFor="cidade">Cidade</label>
-        <input
+        <Input
           id="cidade"
           name="cidade"
           type="text"
@@ -82,7 +80,7 @@ export function AdicionarUsuario() {
           value={formik.values.cidade}
         />
         <label htmlFor="formacoes">Formações</label>
-        <input
+        <Input
           id="formacoes"
           name="formacoes"
           type="text"
@@ -90,7 +88,7 @@ export function AdicionarUsuario() {
           value={formik.values.formacoes}
         />
         <label htmlFor="experiencias">Experiências</label>
-        <input
+        <Input
           id="experiencias"
           name="experiencias"
           type="text"
@@ -98,7 +96,7 @@ export function AdicionarUsuario() {
           value={formik.values.experiencias}
         />
         <label htmlFor="hobbies">Hobbies</label>
-        <input
+        <Input
           id="hobbies"
           name="hobbies"
           type="text"
