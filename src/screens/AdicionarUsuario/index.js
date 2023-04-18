@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { Input } from "../../components/Input";
 import { Header } from "../../components/Header";
-import { Container, Label } from "../../assets/styles.js";
+import { Container, Form, Button } from "../../assets/styles.js";
 
 export function AdicionarUsuario() {
   const formik = useFormik({
@@ -25,89 +25,90 @@ export function AdicionarUsuario() {
     <>
       <Header/>
       <Container>
-        <form onSubmit={formik.handleSubmit}>
-          <Label htmlFor="nome">Nome: </Label>
+        <Form onSubmit={formik.handleSubmit}>
           <Input
             id="nome"
+            placeholder={"Nome"}
             name="nome"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.nome}
           />
-          <Label htmlFor="idade">Idade: </Label>
           <Input
             id="idade"
+            placeholder={"Idade"}
             name="idade"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.idade}
           />
-          <Label htmlFor="cep">CEP</Label>
           <Input
             id="cep"
+            placeholder={"CEP"}
             name="cep"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.cep}
           />
-          <button type="submit">Buscar CEP</button>
-          <Label htmlFor="logradouro">Logradouro</Label>
+          <Button type="submit">Buscar CEP</Button>
           <Input
             id="logradouro"
+            placeholder={"Logradouro"}
             name="logradouro"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.logradouro}
           />
-          <Label htmlFor="bairro">Bairro</Label>
           <Input
             id="bairro"
+            placeholder={"Bairro"}
             name="bairro"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.bairro}
           />
-          <Label htmlFor="numero">Numero</Label>
           <Input
             id="numero"
+            placeholder={"Numero"}
             name="numero"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.numero}
           />
-          <Label htmlFor="cidade">Cidade</Label>
           <Input
             id="cidade"
+            placeholder={"Cidade"}
             name="cidade"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.cidade}
           />
-          <Label htmlFor="formacoes">Formações</Label>
           <Input
             id="formacoes"
+            placeholder={"Formações"}
             name="formacoes"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.formacoes}
           />
-          <Label htmlFor="experiencias">Experiências</Label>
           <Input
             id="experiencias"
+            placeholder={"Experiências"}
             name="experiencias"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.experiencias}
           />
-          <Label htmlFor="hobbies">Hobbies</Label>
           <Input
             id="hobbies"
+            placeholder={"Hobbies"}
             name="hobbies"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.hobbies}
           />
-        </form>
+          <Button type="submit">Adicionar</Button>
+        </Form>
       </Container>
     </>
   );
