@@ -11,6 +11,7 @@ export const NormalizeStyles = createGlobalStyle`
 
   body{
     background: ${Colors.BACKGROUND};
+    font-family: "Poppins";
   }
 
   button{
